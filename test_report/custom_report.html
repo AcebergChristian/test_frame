@@ -1,0 +1,873 @@
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script type="text/javascript" src="echarts.min.js" ></script>
+	<title>测试报告</title>
+	<base target="_blank">
+
+
+	<style type="text/css">
+		#main {
+			width: 100%;
+			height: 100%;
+			background-color: rgb(30, 30, 30);
+		}
+
+		#topnav {
+			display: flex;
+			align-items: center;
+			width: 100%;
+			height: 56px;
+			background-color: rgb(255, 255, 255);
+		}
+
+		.topnav_logo {
+			margin-left: 80px;
+		}
+
+		.topnav_logo img {
+			background-color: rgb(34, 126, 98);
+		}
+
+		.topnav_title {
+			font-size: 18px;
+			margin-left: 24px;
+		}
+
+		.topnav_img {
+			position: absolute;
+			right: 80px;
+			background-color: rgb(100, 100, 100);
+		}
+
+		.topnav_img:hover {
+			cursor: pointer;
+			background-color: rgb(60, 60, 60);
+		}
+
+		#content {
+			width: 100%;
+			height: calc(100% - 56px);
+			background-color: rgb(95, 133, 190);
+		}
+
+		#content_menu {
+			float: left;
+			width: 180px;
+			height: 100%;
+			background-color: rgb(41, 112, 88);
+		}
+
+		#content_con {
+			float: left;
+			width: calc(100% - 180px);
+			height: 100%;
+			background-color: rgb(106, 190, 120);
+		}
+
+		.menu_list ul {
+			padding: 0;
+			margin-top: 40px;
+			height: 240px;
+		}
+
+		.menu_list ul li {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 100%;
+			height: 100px;
+		}
+
+		.clickli {
+			background: linear-gradient(90deg, rgba(33, 96, 77, 0), rgb(33, 96, 77));
+			;
+		}
+
+		.menu_list ul li:hover {
+			cursor: pointer;
+			background: linear-gradient(90deg, rgba(33, 96, 77, 0), rgb(33, 96, 77));
+		}
+
+		.menu_list ul li div {
+			display: flex;
+			justify-content: center;
+			align-content: stretch;
+			flex-direction: column;
+		}
+
+		.menu_list ul li div img {
+			font-size: 16px;
+			color: #ffffff;
+			width: 100%;
+		}
+
+		.menu_list ul li div span {
+			margin-top: 10px;
+			font-size: 14px;
+			color: #ffffff;
+
+		}
+
+		#overview {
+			width: 100%;
+			height: 100%;
+			overflow-y: scroll;
+			background-color: rgb(218, 218, 218);
+		}
+
+		#overview_0 {
+			display: flex;
+			align-items: center;
+			justify-content: space-around;
+			width: 100%;
+			height: 200px;
+		}
+
+		.overview_0_div {
+			display: flex;
+			align-items: center;
+			justify-content: space-evenly;
+			flex-direction: column;
+			width: 23%;
+			height: 96%;
+			border-radius: 4px;
+			background-color: rgb(255, 255, 255);
+		}
+
+		.overview_0_div div {
+			display: flex;
+			align-items: center;
+		}
+
+		.overview_0_div div img {
+			margin-right: 10px;
+		}
+
+		.overview_0_div:nth-child(1) .overview_0_div_title {
+			color: #4c81ff;
+		}
+
+		.overview_0_div:nth-child(2) .overview_0_div_title {
+			color: rgb(45, 173, 45);
+		}
+
+		.overview_0_div:nth-child(3) .overview_0_div_title {
+			color: rgb(212, 68, 68);
+		}
+
+		.overview_0_div:nth-child(4) .overview_0_div_title {
+			color: #4c81ff;
+		}
+
+		.overview_0_div_title {
+			font-size: 24px;
+			font-weight: 500;
+		}
+
+		.overview_0_div_val {
+			font-size: 20px;
+		}
+
+		#overview_1 {
+			display: flex;
+			align-items: center;
+			justify-content: space-evenly;
+			width: 100%;
+			height: 300px
+		}
+
+		#overview_1_1,
+		#overview_1_2 {
+			width: 48%;
+			height: 96%;
+			background-color: #ffffff;
+			border-radius: 4px;
+		}
+
+		#overview_1_1 {
+			display: flex;
+			align-items: center;
+			justify-content:space-around;
+		}
+
+		#overview_1_1_bar {
+			width: 40%;
+			height: 90%;
+		}
+
+		#overview_1_1_pie {
+			width: 40%;
+			height: 90%;
+		}
+
+		#overview_1_2_title {
+			margin-top: 12px;
+			margin-bottom: 12px;
+			padding-bottom: 10px;
+			display: flex;
+			align-items: center;
+			justify-content: space-around;
+			width: 100%;
+			border-bottom: 1px solid #f1f1f1;
+		}
+
+		#overview_1_2_title span{
+			float: left;
+		}
+
+		#overview_1_2_title div{
+			width: 80px;
+			height: 30px;
+			text-align: center;
+			line-height: 30px;
+			font-size: 14px;
+			border-radius: 4px;
+			border: 1px solid #e1e1e1;
+			color: #a1a1a1;
+		}
+
+		#overview_1_2_title div:hover{
+			cursor: pointer;
+			color: #333333;
+			border: 1px solid #888888;
+		}
+
+		#overview_1_2_filed{
+			padding-bottom: 12px;
+			display: flex;
+			align-items: center;
+			justify-content: space-around;
+			width: 100%;
+		}
+
+		#overview_1_2_data{
+			margin-top: 10px;
+			display: flex;
+			align-items: center;
+			justify-content: space-around;
+			flex-direction: column;
+		}
+
+		#overview_1_2_data div{
+			margin-top: 8px;
+			display: flex;
+			align-items: center;
+			justify-content: space-around;
+			width: 100%;
+		}
+
+		#overview_1_2_data div span:nth-child(3){
+			width: 60px;
+			height: 24px;
+			text-align: center;
+			line-height: 24px;
+			font-size: 14px;
+			border-radius: 4px;
+			color: #ffffff;
+			background-color: rgb(57, 167, 57);
+		}
+
+		#overview_1_2_data div span:nth-child(3):hover{
+			cursor: pointer;
+		}
+
+		#overview_2 {
+			display: flex;
+			align-items: center;
+			justify-content: space-evenly;
+			width: 100%;
+			height: 360px;
+		}
+
+		#overview_2_div {
+			width: 97%;
+			height: 96%;
+			border-radius: 4px;
+			background-color: rgb(255, 255, 255);
+		}
+
+
+		/************************ databench 样式 ************************/
+		#databench {
+			width: 100%;
+			height: 100%;
+			background-color: rgb(255, 255, 255);
+		}
+
+		#databench_filter {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			width: 100%;
+			height: 8%;
+			background-color: rgb(114, 172, 77);
+		}
+		
+		#databench_filter_select {
+			width: 560px;
+			display: flex;
+			align-items: center;
+			justify-content: space-around;
+		}
+
+		#databench_filter_select span{
+			font-size: 14px;
+			color: #ffffff;
+		}
+
+		#databench_filter_modname, #databench_filter_res {
+			display: flex;
+			align-items: center;
+			justify-content: space-around;
+			width: 200px;
+			height: 32px;
+			background-color: rgb(255, 255, 255);
+		}
+
+		#databench_filter_modname img, #databench_filter_res img {
+			background-color: rgb(100, 100, 100);
+		}
+
+		#databench_filter_modname_text,#databench_filter_res_text{
+			width: 120px;
+			height: 30px;
+			color: #666666;
+			line-height: 30px;
+			font-size: 14px;
+		}
+
+		#databench_filter_modnameselect, #databench_filter_resselect{
+			position: absolute;
+			width: 200px;
+			height: 90px;
+			border: 1px solid #f1f1f1;
+			box-shadow: 3px 4px 8px rgb(170,170,170);
+			border-radius: 4px;
+			display: none;
+			background-color: #ffffff;
+			overflow-y: scroll;
+			z-index: 1;
+		}
+
+		#databench_filter_modnameselect ul,#databench_filter_resselect ul{
+			margin: 0;
+			padding: 4px;
+		}
+
+		#databench_filter_modnameselect ul li,#databench_filter_resselect ul li{
+			display: block;
+			font-size: 12px;
+			padding-left: 14px;
+			color: #666666;
+		}
+
+		#databench_filter_modnameselect ul li:hover, #databench_filter_resselect ul li:hover{
+			background-color: rgb(114, 172, 77);
+		}
+
+		#databench_filter_count {
+			display: flex;
+			align-items: center;
+			justify-content: space-around;
+			margin-right: 40px;
+			width: 240px;
+			height: 32px;
+			background-color: rgb(255, 255, 255);
+			border: 1px solid #f1f1f1;
+			font-size: 12px;
+		}
+
+		#databench_filter_count span:nth-child(1){
+			color: #4c81ff;
+		}
+		#databench_filter_count span:nth-child(4){
+			color: rgb(114, 172, 77);
+		}
+		#databench_filter_count span:nth-child(7){
+			color: #e24742;
+		}
+
+		#databench_table {
+			display: flex;
+			margin-top: 16px;
+			width: 100%;
+			height: calc(92% - 16px);
+			background-color: rgb(255, 255, 255);
+		}
+
+		#databench_tablediv {
+			display: flex;
+			justify-content: center;
+			width: 100%;
+			height: 68%;
+			background-color: rgb(255, 255, 255);
+			border: 1px solid #ddd;
+			border-radius: 4px;
+			border-collapse: collapse;
+		}
+
+		#dynamic_table {
+			display: block;
+			width: 100%;
+			height: 100%;
+			border-collapse: collapse;
+			border: 1px solid #ddd;
+			overflow: auto;
+   		}
+		
+		thead tr {
+			position: sticky;
+		}
+
+		th, td{
+			max-width: 200px;
+			padding: 8px;
+			text-align: left;
+			border: 1px solid #ddd;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+
+		tbody {
+			display: contents;
+		}
+
+		/* 表头样式 */
+		th {
+			background-color: #333333;
+			color: white;
+		}
+
+		/* 奇数行样式 */
+		tr:nth-child(odd) {
+			background-color: #f2f2f2;
+		}
+
+		/* 偶数行样式 */
+		tr:nth-child(even) {
+			background-color: #ffffff;
+		}
+
+
+	</style>
+</head>
+
+
+<body>
+
+	<div id="main">
+		<div id="topnav">
+			<div class="topnav_logo">
+				<img src="sys.svg" width="32" height="32" alt="">
+			</div>
+			<div class="topnav_title">
+				<span>测试报告</span>
+			</div>
+			<div class="topnav_img">
+				<img src="sys.svg" width="24" height="24" alt="截图" title="截图">
+			</div>
+		</div>
+		<div id="content">
+			<div id="content_menu">
+				<div class="menu_list">
+					<ul>
+						<li>
+							<div>
+								<img src="sys.svg" width="20" height="20" alt="">
+								<span>Overview</span>
+							</div>
+
+						</li>
+						<li>
+							<div><img src="sys.svg" width="20" height="20" alt="">
+								<span>Databench</span>
+							</div>
+
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div id="content_con">
+				<div id="overview">
+					<div id="overview_0">
+						<div class="overview_0_div">
+							<div><img src="sys.svg" style="background-color: black;" width="20" height="20" alt=""><span
+									class="overview_0_div_title">Total Number</span></div>
+							<span class="overview_0_div_val">2</span>
+						</div>
+						<div class="overview_0_div">
+							<div><img src="sys.svg" style="background-color: black;" width="20" height="20" alt=""><span
+									class="overview_0_div_title">Success Number</span></div>
+							<span class="overview_0_div_val">2</span>
+						</div>
+						<div class="overview_0_div">
+							<div><img src="sys.svg" style="background-color: black;" width="20" height="20" alt=""><span
+									class="overview_0_div_title">Fail Number</span></div>
+							<span class="overview_0_div_val"> 0 </span>
+						</div>
+						<div class="overview_0_div">
+							<div><img src="sys.svg" style="background-color: black;" width="20" height="20" alt=""><span
+									class="overview_0_div_title">Run Time</span></div>
+							<span class="overview_0_div_val"> 11.65 </span>
+						</div>
+					</div>
+
+					<div id="overview_1">
+						<div id="overview_1_1">
+							<div id="overview_1_1_bar"></div>
+							<div id="overview_1_1_pie"></div>
+						</div>
+						<div id="overview_1_2">
+							<div id="overview_1_2_title">
+								<span>Test View</span>
+								<div>View All</div>
+							</div>
+							<div id="overview_1_2_filed">
+								<!-- <div class="overview_1_2_filed_filed"> -->
+									<span>F1</span><span>F2</span><span>F3</span>
+								<!-- </div> -->
+							</div>
+							<div id="overview_1_2_data">
+								{% for item in data["alldata"] %}
+									<div><span>item["no"]</span><span>item["title"]</span><span>item["run_res"]</span></div>
+							</div>
+						</div>
+					</div>
+					<div id="overview_2">
+						<div id="overview_2_div"></div>
+					</div>
+					
+				</div>
+				<div id="databench">
+					<div id="databench_filter">
+						<div id="databench_filter_select">
+
+							<span>modname:</span>
+							<div id="databench_filter_modname">
+								<div id="databench_filter_modname_text"></div><img src="sys.svg" alt="">
+							</div>
+
+							<div id="databench_filter_modnameselect">
+								<ul>
+									<li>All</li>
+									<li>login</li>
+									<li>starcar</li>
+									<li>login</li>
+									<li>starcar</li>
+									<li>login</li>
+									<li>starcar</li>
+								</ul>
+							</div>
+
+							<span>run_res:</span>
+							<div id="databench_filter_res">
+								<div id="databench_filter_res_text"></div><img src="sys.svg" alt="">
+							</div>
+							<div id="databench_filter_resselect">
+								<ul>
+									<li>All</li>
+									<li>success</li>
+									<li>fail</li>
+								</ul>
+							</div>
+						</div>
+						
+						<div id="databench_filter_count">
+							<span>用例总数:</span><span>  10  </span><span> | </span>
+							<span>成功:</span><span>  8  </span><span> | </span>
+							<span>失败:</span><span>  2  </span>
+						</div>
+					</div>
+					<div id="databench_table">
+						<div id="databench_tablediv">
+							<table id="dynamic_table">
+								<!-- 表头会在 JavaScript 中动态生成 -->
+								<thead>
+									<tr></tr>
+								</thead>
+								<tbody>
+									<!-- 数据会在 JavaScript 中动态生成 -->
+								</tbody>
+							</table>
+						</div>
+						
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+
+	<script type="text/javascript">
+
+		// js方法
+		$(function () {
+
+			// load后 默认情况，默认展示overview
+			$("#overview").show()
+			$("#databench").hide()
+
+
+			// 点击overview
+			var btn1 = $(".menu_list ul li:first")
+			btn1.on('click', ["overview", 1, 2, 3], function (event) {
+				console.log(event.data);
+				btn1.addClass("clickli")
+				btn2.removeClass("clickli")
+
+				$("#overview").show()
+				$("#databench").hide()
+
+			})
+
+			// 点击databench
+			var btn2 = $(".menu_list ul li:last")
+			btn2.on('click', ["databench", 1, 2, 3], function (event) {
+				console.log(event.data);
+				btn2.addClass("clickli")
+				btn1.removeClass("clickli")
+
+				$("#overview").hide()
+				$("#databench").show()
+			})
+
+			// overview_1_1 里的bar
+			var overview_1_1_bar = echarts.init(document.getElementById("overview_1_1_bar"));
+			var overview_1_1_bar_option = {
+				color: "#4c81ff",
+				xAxis: {
+					type: 'category',
+					data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+				},
+				yAxis: {
+					type: 'value'
+				},
+				series: [
+					{
+					data: [120, 200, 150, 80, 70, 110, 130],
+					type: 'bar',
+					showBackground: true,
+					backgroundStyle: {
+						color: 'rgba(180, 180, 180, 0.2)'
+					}
+					}
+				]
+				};
+        overview_1_1_bar.setOption(overview_1_1_bar_option);
+
+		// overview_1_1 里的bar
+		var overview_1_1_pie = echarts.init(document.getElementById("overview_1_1_pie"));
+			var overview_1_1_pie_option = {
+				color:["#4c81ff","rgb(63,166,64)","rgb(249,205,55)"],
+				tooltip: {
+					trigger: 'item'
+				},
+				legend: {
+					orient: 'vertical',
+					top: 'left',
+					orient:"horizontal"
+				},
+				series: [
+					{
+					name: 'Access From',
+					type: 'pie',
+					radius: '50%',
+					data: [
+						{ value: 1048, name: 'Search Engine' },
+						{ value: 735, name: 'Direct' },
+						{ value: 580, name: 'Email' }
+					],
+					emphasis: {
+						itemStyle: {
+						shadowBlur: 10,
+						shadowOffsetX: 0,
+						shadowColor: 'rgba(0, 0, 0, 0.5)'
+						}
+					}
+					}
+				]
+				};
+				overview_1_1_pie.setOption(overview_1_1_pie_option);
+
+		
+		// overview_2 里的 line
+		var overview_2 = echarts.init(document.getElementById("overview_2_div"));
+			var overview_2_option = {
+				color:"#4c81ff",
+				title: {
+					text: 'Line'
+					},
+				tooltip: {
+					trigger: 'axis'
+				},
+				xAxis: {
+					type: 'category',
+					boundaryGap: false,
+					data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+				},
+				yAxis: {
+					type: 'value',
+					axisLabel: {
+					formatter: '{value} °C'
+					}
+				},
+				series: [
+					{
+					name: 'Lowest',
+					type: 'line',
+					data: [1, -2, 2, 5, 3, 2, 0],
+					markPoint: {
+						data: [{ name: '周最低', value: -2, xAxis: 1, yAxis: -1.5 }]
+					},
+					markLine: {
+						data: [
+						{ type: 'average', name: 'Avg' },
+						[
+							{
+							symbol: 'none',
+							x: '90%',
+							yAxis: 'max'
+							},
+							{
+							symbol: 'circle',
+							label: {
+								position: 'start',
+								formatter: 'Max'
+							},
+							type: 'max',
+							name: '最高点'
+							}
+						]
+						]
+					}
+					}
+				]
+				};
+				overview_2.setOption(overview_2_option);
+
+
+		// 点击databench筛选条件
+		var databench_mod = $("#databench_filter_modname")
+		databench_mod.bind('click', ["All", "A", "B", "C"], function (event) {
+
+			$("#databench_filter_modnameselect").css({
+        		top: $(this).position().top +40+ "px",
+        		left: $(this).position().left + "px"
+    		})
+			$("#databench_filter_modnameselect").show()
+		})
+
+
+		var databench_res = $("#databench_filter_res")
+		databench_res.on('click', ["All", "A", "B", "C"], function (event) {
+			$("#databench_filter_resselect").css({
+        		top: $(this).position().top+40 + "px",
+        		left: $(this).position().left + "px"
+    		})
+			$("#databench_filter_resselect").show()
+		})
+
+		// 当页面其他地方被点击时
+		$(document).click(function(event) {
+        // 如果点击事件不是来自于Bdiv或Adiv
+        if (!$(event.target).closest("#databench_filter_modname, #databench_filter_res").length) {
+            // 隐藏Bdiv
+            $("#databench_filter_modnameselect").hide()
+			$("#databench_filter_resselect").hide()
+        }
+    	});
+
+		//点击筛选方法
+		$("#databench_filter_modnameselect ul li").on("click",[],function(e){
+			text = e.target.innerHTML
+			console.log(text)
+			$("#databench_filter_modname_text").text(text)
+		})
+
+		$("#databench_filter_resselect ul li").on("click",[],function(e){
+			text = e.target.innerHTML
+			$("#databench_filter_res_text").text(text)
+		})
+
+		
+		// 数据表格
+		// 输入的表头列表和数据列表
+		var headerList = ["Name", "Age", "Country","Name", "Age", "Country","Name", "Age", "Country","Name", "Age", "Country","Name", "Age", "Country","Name", "Age", "Country","Name", "Age", "Country"];
+		var dataList = [
+			{ Name: "Alice", Age: 25, Country: "USA" },
+			{ Name: "Bob", Age: 30, Country: "Canada" },
+			{ Name: "Carol", Age: 28, Country: "UK" },
+			{ Name: "Alice", Age: 25, Country: "USA" },
+			{ Name: "Bob", Age: 30, Country: "Canada" },
+			{ Name: "Carol", Age: 28, Country: "UK" },
+			{ Name: "[{'stepname': '打开登陆链接','operate': 'openlink','url': 'https://www.jd.com/'}", Age: 30, Country: "Canada" },
+			{ Name: "Carol", Age: 28, Country: "UK" },
+			{ Name: "Alice", Age: 25, Country: "USA" },
+			{ Name: "Bob", Age: 30, Country: "Canada" },
+			{ Name: "Carol", Age: 28, Country: "UK" },
+			{ Name: "Bob", Age: 30, Country: "Canada" },
+			{ Name: "Carol", Age: 28, Country: "UK" },
+			{ Name: "Alice", Age: 25, Country: "USA" },
+			{ Name: "Bob", Age: 30, Country: "Canada" },
+			{ Name: "Carol", Age: 28, Country: "UK" },
+			{ Name: "Carol", Age: 28, Country: "UK" },
+			{ Name: "Bob", Age: 30, Country: "Canada" },
+			{ Name: "Carol", Age: 28, Country: "UK" },
+			{ Name: "Alice", Age: 25, Country: "USA" },
+			{ Name: "Bob", Age: 30, Country: "Canada" },
+			{ Name: "Carol", Age: 28, Country: "UK" }
+		];
+
+		
+		function totable( headerList, dataList){
+
+			// 清空原来table里面
+			var tableBodytr = $("#dynamic_table tbody tr");
+			
+
+			// 生成表头
+			var tableHeader = $("#dynamic_table thead tr");
+			$.each(headerList, function (index, header) {
+				tableHeader.append("<th>" + header + "</th>");
+			});
+
+			// 生成数据行
+			var tableBody = $("#dynamic_table tbody");
+			$.each(dataList, function (index, data) {
+				var row = $("<tr></tr>");
+				$.each(headerList, function (index, header) {
+					row.append("<td>" + data[header] + "</td>");
+				});
+				tableBody.append(row);
+			});
+
+			tableBodytr.remove()
+
+			// 生成数据行
+			$.each(dataList, function (index, data) {
+				var row = $("<tr></tr>");
+				$.each(headerList, function (index, header) {
+					row.append("<td>" + data[header] + "</td>");
+				});
+				tableBody.append(row);
+			});
+
+			
+		}
+		totable(headerList, dataList)
+
+
+		//---------end----------
+	})
+
+	</script>
+</body>
+
+
+</html>

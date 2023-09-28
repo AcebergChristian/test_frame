@@ -1,0 +1,1642 @@
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdn.bootcss.com/html2canvas/0.5.0-beta4/html2canvas.js"></script>
+	<script type="text/javascript" src="echarts.min.js"></script>
+	<title>测试报告</title>
+	<base target="_blank">
+
+
+	<style type="text/css">
+		#main {
+			width: 100%;
+			height: 100%;
+			background-color: rgb(30, 30, 30);
+		}
+
+		#topnav {
+			display: flex;
+			align-items: center;
+			width: 100%;
+			height: 56px;
+			background-color: rgb(255, 255, 255);
+		}
+
+		.topnav_logo {
+			margin-left: 80px;
+		}
+
+		.topnav_logo img {
+			background-color: rgb(34, 126, 98);
+		}
+
+		.topnav_title {
+			font-size: 18px;
+			margin-left: 24px;
+		}
+
+		#topnav_img {
+			position: absolute;
+			right: 80px;
+			background-color: rgb(100, 100, 100);
+		}
+
+		#topnav_img:hover {
+			cursor: pointer;
+			background-color: rgb(60, 60, 60);
+		}
+
+		#content {
+			width: 100%;
+			height: calc(100% - 56px);
+			background-color: rgb(95, 133, 190);
+		}
+
+		#content_menu {
+			float: left;
+			width: 180px;
+			height: 100%;
+			background-color: rgb(41, 112, 88);
+		}
+
+		#content_con {
+			float: left;
+			width: calc(100% - 180px);
+			height: 100%;
+			background-color: rgb(106, 190, 120);
+		}
+
+		.menu_list ul {
+			padding: 0;
+			margin-top: 40px;
+			height: 240px;
+		}
+
+		.menu_list ul li {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 100%;
+			height: 100px;
+		}
+
+		.clickli {
+			background: linear-gradient(90deg, rgba(33, 96, 77, 0), rgb(33, 96, 77));
+			;
+		}
+
+		.menu_list ul li:hover {
+			cursor: pointer;
+			background: linear-gradient(90deg, rgba(33, 96, 77, 0), rgb(33, 96, 77));
+		}
+
+		.menu_list ul li div {
+			display: flex;
+			justify-content: center;
+			align-content: stretch;
+			flex-direction: column;
+		}
+
+		.menu_list ul li div img {
+			font-size: 16px;
+			color: #ffffff;
+			width: 100%;
+		}
+
+		.menu_list ul li div span {
+			margin-top: 10px;
+			font-size: 14px;
+			color: #ffffff;
+
+		}
+
+		#overview {
+			width: 100%;
+			height: 100%;
+			overflow-y: scroll;
+			background-color: rgb(218, 218, 218);
+		}
+
+		#overview_0 {
+			display: flex;
+			align-items: center;
+			justify-content: space-around;
+			width: 100%;
+			height: 200px;
+		}
+
+		.overview_0_div {
+			display: flex;
+			align-items: center;
+			justify-content: space-evenly;
+			flex-direction: column;
+			width: 23%;
+			height: 96%;
+			border-radius: 4px;
+			background-color: rgb(255, 255, 255);
+		}
+
+		.overview_0_div div {
+			display: flex;
+			align-items: center;
+		}
+
+		.overview_0_div div img {
+			margin-right: 10px;
+		}
+
+		.overview_0_div:nth-child(1) .overview_0_div_title {
+			color: #4c81ff;
+		}
+
+		.overview_0_div:nth-child(2) .overview_0_div_title {
+			color: rgb(45, 173, 45);
+		}
+
+		.overview_0_div:nth-child(3) .overview_0_div_title {
+			color: rgb(212, 68, 68);
+		}
+
+		.overview_0_div:nth-child(4) .overview_0_div_title {
+			color: #4c81ff;
+		}
+
+		.overview_0_div_title {
+			font-size: 24px;
+			font-weight: 500;
+		}
+
+		.overview_0_div_val {
+			font-size: 20px;
+		}
+
+		#overview_1 {
+			display: flex;
+			align-items: center;
+			justify-content: space-evenly;
+			width: 100%;
+			height: 300px
+		}
+
+		#overview_1_1,
+		#overview_1_2 {
+			width: 48%;
+			height: 96%;
+			background-color: #ffffff;
+			border-radius: 4px;
+		}
+
+		#overview_1_1 {
+			display: flex;
+			align-items: center;
+			justify-content: space-around;
+		}
+
+		#overview_1_1_bar {
+			width: 60%;
+			height: 90%;
+		}
+
+		#overview_1_1_pie {
+			width: 40%;
+			height: 90%;
+		}
+
+		#overview_1_2_title {
+			margin-top: 12px;
+			margin-bottom: 12px;
+			padding-bottom: 10px;
+			display: flex;
+			align-items: center;
+			justify-content: space-around;
+			width: 100%;
+			border-bottom: 1px solid #f1f1f1;
+		}
+
+		#overview_1_2_title span {
+			float: left;
+		}
+
+		#overview_1_2_title div {
+			width: 80px;
+			height: 30px;
+			text-align: center;
+			line-height: 30px;
+			font-size: 14px;
+			border-radius: 4px;
+			border: 1px solid #e1e1e1;
+			color: #a1a1a1;
+		}
+
+		#overview_1_2_title div:hover {
+			cursor: pointer;
+			color: #333333;
+			border: 1px solid #888888;
+		}
+
+		#overview_1_2_filed {
+			padding-bottom: 12px;
+			display: flex;
+			align-items: center;
+			justify-content: space-around;
+			width: 100%;
+		}
+
+		#overview_1_2_data {
+			margin-top: 10px;
+			display: flex;
+			align-items: center;
+			justify-content: space-around;
+			flex-direction: column;
+		}
+
+		#overview_1_2_data div {
+			margin-top: 8px;
+			display: flex;
+			align-items: center;
+			justify-content: space-around;
+			width: 100%;
+		}
+
+		#overview_1_2_data div span:nth-child(3) {
+			width: 60px;
+			height: 24px;
+			text-align: center;
+			line-height: 24px;
+			font-size: 14px;
+			border-radius: 4px;
+			color: #ffffff;
+			background-color: rgb(57, 167, 57);
+		}
+
+		#overview_1_2_data div span:nth-child(3):hover {
+			cursor: pointer;
+		}
+
+		#overview_2 {
+			display: flex;
+			align-items: center;
+			justify-content: space-evenly;
+			width: 100%;
+			height: 360px;
+		}
+
+		#overview_2_div {
+			width: 97%;
+			height: 96%;
+			border-radius: 4px;
+			background-color: rgb(255, 255, 255);
+		}
+
+
+		/************************ databench 样式 ************************/
+		#databench {
+			width: 100%;
+			height: 100%;
+			background-color: rgb(255, 255, 255);
+		}
+
+		#databench_filter {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			width: 100%;
+			height: 8%;
+			background-color: rgb(114, 172, 77);
+		}
+
+		#databench_filter_select {
+			width: 560px;
+			display: flex;
+			align-items: center;
+			justify-content: space-around;
+		}
+
+		#databench_filter_select span {
+			font-size: 14px;
+			color: #ffffff;
+		}
+
+		#databench_filter_modname,
+		#databench_filter_res {
+			display: flex;
+			align-items: center;
+			justify-content: space-around;
+			width: 200px;
+			height: 32px;
+			background-color: rgb(255, 255, 255);
+		}
+
+		#databench_filter_modname img,
+		#databench_filter_res img {
+			background-color: rgb(100, 100, 100);
+		}
+
+		#databench_filter_modname_text,
+		#databench_filter_res_text {
+			width: 120px;
+			height: 30px;
+			color: #666666;
+			line-height: 30px;
+			font-size: 14px;
+		}
+
+		#databench_filter_modnameselect,
+		#databench_filter_resselect {
+			position: absolute;
+			width: 200px;
+			height: 90px;
+			border: 1px solid #f1f1f1;
+			box-shadow: 3px 4px 8px rgb(170, 170, 170);
+			border-radius: 4px;
+			display: none;
+			background-color: #ffffff;
+			overflow-y: scroll;
+			z-index: 1;
+		}
+
+		#databench_filter_modnameselect ul,
+		#databench_filter_resselect ul {
+			margin: 0;
+			padding: 4px;
+		}
+
+		#databench_filter_modnameselect ul li,
+		#databench_filter_resselect ul li {
+			display: block;
+			font-size: 12px;
+			padding-left: 14px;
+			color: #666666;
+		}
+
+		#databench_filter_modnameselect ul li:hover,
+		#databench_filter_resselect ul li:hover {
+			background-color: rgb(114, 172, 77);
+		}
+
+		#databench_filter_count {
+			display: flex;
+			align-items: center;
+			justify-content: space-around;
+			margin-right: 40px;
+			width: 240px;
+			height: 32px;
+			background-color: rgb(255, 255, 255);
+			border: 1px solid #f1f1f1;
+			font-size: 12px;
+		}
+
+		#databench_filter_count span:nth-child(1) {
+			color: #4c81ff;
+		}
+
+		#databench_filter_count span:nth-child(4) {
+			color: rgb(114, 172, 77);
+		}
+
+		#databench_filter_count span:nth-child(7) {
+			color: #e24742;
+		}
+
+		#databench_table {
+			display: flex;
+			margin-top: 16px;
+			width: 100%;
+			height: calc(92% - 16px);
+			background-color: rgb(255, 255, 255);
+		}
+
+		#databench_tablediv {
+			display: flex;
+			justify-content: center;
+			width: 100%;
+			height: 68%;
+			background-color: rgb(255, 255, 255);
+			border: 1px solid #ddd;
+			border-radius: 4px;
+			border-collapse: collapse;
+		}
+
+		#dynamic_table {
+			display: block;
+			width: 100%;
+			height: 100%;
+			border-collapse: collapse;
+			border: 1px solid #ddd;
+			overflow: auto;
+		}
+
+		thead tr {
+			position: sticky;
+		}
+
+		th,
+		td {
+			max-width: 200px;
+			padding: 8px;
+			text-align: left;
+			border: 1px solid #ddd;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+
+		tbody {
+			display: contents;
+		}
+
+		/* 表头样式 */
+		th {
+			background-color: #333333;
+			color: white;
+		}
+
+		/* 奇数行样式 */
+		tr:nth-child(odd) {
+			background-color: #f2f2f2;
+		}
+
+		/* 偶数行样式 */
+		tr:nth-child(even) {
+			background-color: #ffffff;
+		}
+	</style>
+</head>
+
+
+<body>
+
+	<div id="main">
+		<div id="topnav">
+			<div class="topnav_logo">
+				<img src="sys.svg" width="32" height="32" alt="">
+			</div>
+			<div class="topnav_title">
+				<span>测试报告</span>
+			</div>
+			<div id="topnav_img">
+				<img src="sys.svg" width="24" height="24" alt="截图" title="截图">
+			</div>
+		</div>
+		<div id="content">
+			<div id="content_menu">
+				<div class="menu_list">
+					<ul>
+						<li>
+							<div>
+								<img src="sys.svg" width="20" height="20" alt="">
+								<span>Overview</span>
+							</div>
+
+						</li>
+						<li>
+							<div><img src="sys.svg" width="20" height="20" alt="">
+								<span>Databench</span>
+							</div>
+
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div id="content_con">
+				<div id="overview">
+					<div id="overview_0">
+						<div class="overview_0_div">
+							<div><img src="sys.svg" style="background-color: black;" width="20" height="20" alt=""><span
+									class="overview_0_div_title">Total Number</span></div>
+							<span class="overview_0_div_val">14</span>
+						</div>
+						<div class="overview_0_div">
+							<div><img src="sys.svg" style="background-color: black;" width="20" height="20" alt=""><span
+									class="overview_0_div_title">Success Number</span></div>
+							<span class="overview_0_div_val">10</span>
+						</div>
+						<div class="overview_0_div">
+							<div><img src="sys.svg" style="background-color: black;" width="20" height="20" alt=""><span
+									class="overview_0_div_title">Fail Number</span></div>
+							<span class="overview_0_div_val"> 4 </span>
+						</div>
+						<div class="overview_0_div">
+							<div><img src="sys.svg" style="background-color: black;" width="20" height="20" alt=""><span
+									class="overview_0_div_title">Run Time</span></div>
+							<span class="overview_0_div_val"> 77.39 </span>
+						</div>
+					</div>
+
+					<div id="overview_1">
+						<div id="overview_1_1">
+							<div id="overview_1_1_bar"></div>
+							<div id="overview_1_1_pie"></div>
+						</div>
+						<div id="overview_1_2">
+							<div id="overview_1_2_title">
+								<span>Brief View</span>
+								<div class="gotoall">Goto All</div>
+							</div>
+							<div id="overview_1_2_filed">
+								<!-- <div class="overview_1_2_filed_filed"> -->
+								<span>No</span><span>Title</span><span>Runres</span>
+								<!-- </div> -->
+							</div>
+							<div id="overview_1_2_data">
+								
+							
+							<div>
+								<span> 1 </span>
+								<span> 用户输入错误信息后登录失败 </span>
+								
+								<span>成功</span>
+								
+							</div>
+							
+							<div>
+								<span> 2 </span>
+								<span> 用户输入错误信息后登录失败 </span>
+								
+								<span>成功</span>
+								
+							</div>
+							
+							<div>
+								<span> 3 </span>
+								<span> 用户输入信息后成功登录 </span>
+								
+								<span style="background-color: rgb(204, 58, 58);">失败</span>
+								
+							</div>
+							
+							
+						</div>
+					</div>
+				</div>
+				<div id="overview_2">
+					<div id="overview_2_div"></div>
+				</div>
+
+			</div>
+			<div id="databench">
+				<div id="databench_filter">
+					<div id="databench_filter_select">
+
+						<span>modname:</span>
+						<div id="databench_filter_modname">
+							<div id="databench_filter_modname_text"></div><img src="sys.svg" alt="">
+						</div>
+
+						<div id="databench_filter_modnameselect">
+							<ul>
+								<li>All</li>
+								
+								<li>登陆</li>
+								
+								<li>购物车</li>
+								
+								<li>商品数据</li>
+								
+								<li>数据管理</li>
+								
+							</ul>
+						</div>
+
+						<span>run_res:</span>
+						<div id="databench_filter_res">
+							<div id="databench_filter_res_text"></div><img src="sys.svg" alt="">
+						</div>
+						<div id="databench_filter_resselect">
+							<ul>
+								<li>All</li>
+								<li>成功</li>
+								<li>失败</li>
+							</ul>
+						</div>
+					</div>
+
+					<div id="databench_filter_count">
+						<span>用例总数:</span><span> 14 </span><span> | </span>
+						<span>成功:</span><span> 10 </span><span> | </span>
+						<span>失败:</span><span> 4 </span>
+					</div>
+				</div>
+				<div id="databench_table">
+					<div id="databench_tablediv">
+						<table id="dynamic_table">
+							<!-- 表头会在 JavaScript 中动态生成 -->
+							<thead>
+								<tr>
+									
+									<th>no</th>
+									
+									<th>modname</th>
+									
+									<th>title</th>
+									
+									<th>details</th>
+									
+									<th>operate_step</th>
+									
+									<th>kdt_step</th>
+									
+									<th>veritydef</th>
+									
+									<th>veritypath</th>
+									
+									<th>priority</th>
+									
+									<th>responsibler</th>
+									
+									<th>remarks</th>
+									
+									<th>starttime</th>
+									
+									<th>run_time</th>
+									
+									<th>run_res</th>
+									
+								</tr>
+							</thead>
+							<tbody>
+								<!-- 数据会在 JavaScript 中动态生成 -->
+								
+								<tr>
+									
+									<td>1</td>
+									
+									<td>登陆</td>
+									
+									<td>用户输入错误信息后登录失败</td>
+									
+									<td>进入登录页面、用户数据</td>
+									
+									<td>1.成功打开商城
+2.输入正确用户账号
+3.输入错误的用户密码
+4.点击登录</td>
+									
+									<td>[
+  {
+    "stepname": "打开登陆链接",
+    "operate": "openlink",
+    "url": "https://www.jd.com/"
+  },
+  {
+    "stepname": "点击登陆",
+    "operate": "click",
+    "ele_path": "//*[@id='ttbar-login']/a[1]"
+  },
+  {
+    "stepname": "输入账号",
+    "operate": "input",
+    "ele_path": "//*[@id='loginname']",
+"value": "18502125319"
+  },
+  {
+    "stepname": "输入密码",
+    "operate": "input",
+    "ele_path": "//*[@id='nloginpwd']",
+    "value": "199519951995,"
+  },
+  {
+    "stepname": "点击登录按钮",
+    "operate": "click",
+    "ele_path": "//*[@id='formlogin']/div[5]/div"
+  }
+]</td>
+									
+									<td>errorlogin</td>
+									
+									<td>//*[@id="content"]/div[2]/div[1]/div</td>
+									
+									<td>高</td>
+									
+									<td>Ace</td>
+									
+									<td>备注文字备注文字备注文字</td>
+									
+									<td>2023-08-25 22:06:42</td>
+									
+									<td>9.39</td>
+									
+									<td>1</td>
+									
+								</tr>
+								
+								<tr>
+									
+									<td>2</td>
+									
+									<td>登陆</td>
+									
+									<td>用户输入错误信息后登录失败</td>
+									
+									<td>进入登录页面、用户数据</td>
+									
+									<td>1.成功打开商城
+2.输入错误的用户账号
+3.输入错误的用户密码
+4.点击登录</td>
+									
+									<td>[
+  {
+    "stepname": "打开登陆链接",
+    "operate": "openlink",
+    "url": "https://www.jd.com/"
+  },
+  {
+    "stepname": "点击登陆",
+    "operate": "click",
+    "ele_path": "//*[@id='ttbar-login']/a[1]"
+  },
+  {
+    "stepname": "输入账号",
+    "operate": "input",
+    "ele_path": "//*[@id='loginname']",
+"value": "18888888888"
+  },
+  {
+    "stepname": "输入密码",
+    "operate": "input",
+    "ele_path": "//*[@id='nloginpwd']",
+    "value": "199519951995,"
+  },
+  {
+    "stepname": "点击登录按钮",
+    "operate": "click",
+    "ele_path": "//*[@id='formlogin']/div[5]/div"
+  }
+]</td>
+									
+									<td>errorlogin</td>
+									
+									<td>//*[@id="content"]/div[2]/div[1]/div</td>
+									
+									<td>高</td>
+									
+									<td>Ace</td>
+									
+									<td>备注文字备注文字备注文字</td>
+									
+									<td>2023-08-25 22:06:51</td>
+									
+									<td>5.03</td>
+									
+									<td>1</td>
+									
+								</tr>
+								
+								<tr>
+									
+									<td>3</td>
+									
+									<td>登陆</td>
+									
+									<td>用户输入信息后成功登录</td>
+									
+									<td>进入登录页面、用户数据</td>
+									
+									<td>1.成功打开商城
+2.输入用户账号
+3.输入用户密码
+4.点击登录</td>
+									
+									<td>[
+  {
+    "stepname": "打开登陆链接",
+    "operate": "openlink",
+    "url": "https://www.jd.com/"
+  },
+  {
+    "stepname": "点击登陆",
+    "operate": "click",
+    "ele_path": "//*[@id='ttbar-login']/a[1]"
+  },
+  {
+    "stepname": "输入账号",
+    "operate": "input",
+    "ele_path": "//*[@id='loginname']",
+"value": "18502125319"
+  },
+  {
+    "stepname": "输入密码",
+    "operate": "input",
+    "ele_path": "//*[@id='nloginpwd']",
+    "value": "19950319wanghe,"
+  },
+  {
+    "stepname": "点击登录按钮",
+    "operate": "click",
+    "ele_path": "//*[@id='formlogin']/div[5]/div"
+  }
+]</td>
+									
+									<td>login</td>
+									
+									<td>//*[@id="ttbar-login"]/div[1]/a</td>
+									
+									<td>高</td>
+									
+									<td>Ace</td>
+									
+									<td>备注文字备注文字备注文字</td>
+									
+									<td>2023-08-25 22:06:56</td>
+									
+									<td>5.20</td>
+									
+									<td>0</td>
+									
+								</tr>
+								
+								<tr>
+									
+									<td>4</td>
+									
+									<td>购物车</td>
+									
+									<td>添加商品至购物车</td>
+									
+									<td>搜索商品，加入购物车</td>
+									
+									<td>1.输入指定商品名称
+2.点击搜索
+3.把某个商品加入到购物车
+4.进入购物车查看商品
+5.删除购物车中的此商品</td>
+									
+									<td>[
+  {
+    "stepname": "输入搜索的商品名称",
+    "operate": "input",
+    "ele_path": "//*[@id='key']",
+    "value": "iphone14 pro max"
+  },
+  {
+    "stepname": "点击搜索按钮",
+    "operate": "click",
+    "ele_path": "//*[@id='search']/div/div[2]/button"
+  },
+  {
+    "stepname": "点击把某个商品加入购物车",
+    "operate": "click",
+    "ele_path": "//*[@id='J_goodsList']/ul/li[2]/div/div[7]/a[3]"
+  }
+]</td>
+									
+									<td>tostar</td>
+									
+									<td></td>
+									
+									<td>高</td>
+									
+									<td>Borce</td>
+									
+									<td></td>
+									
+									<td>2023-08-25 22:07:05</td>
+									
+									<td>9.05</td>
+									
+									<td>1</td>
+									
+								</tr>
+								
+								<tr>
+									
+									<td>5</td>
+									
+									<td>购物车</td>
+									
+									<td>购物车删除商品</td>
+									
+									<td>进入购物车，删除商品</td>
+									
+									<td>1.进入购物车
+2.选择商品
+3.点击删除</td>
+									
+									<td>[
+  {
+    "stepname": "点击进入购物车",
+    "operate": "click",
+    "ele_path": "//*[@id='GotoShoppingCart']"
+  },
+{
+ "stepname": "跳到某个tab",
+    "operate": "switchtab",
+    "ele_path": "",
+    "value": -1
+},
+  {
+    "stepname": "点击删除选中",
+    "operate": "click",
+    "ele_path": "//*[@id='cart-body']/div[2]/div[5]/div/div[2]/div/div/div/div[2]/div[1]/div[2]/a[1]"
+  },
+{
+    "stepname": "点击删除该商品",
+    "operate": "click",
+    "ele_path": "/html/body/div[9]/div[1]/div/div/div/p/a[2]"
+  }
+]</td>
+									
+									<td>delstar</td>
+									
+									<td></td>
+									
+									<td>高</td>
+									
+									<td>Borce</td>
+									
+									<td></td>
+									
+									<td>2023-08-25 22:07:14</td>
+									
+									<td>9.10</td>
+									
+									<td>1</td>
+									
+								</tr>
+								
+								<tr>
+									
+									<td>6</td>
+									
+									<td>商品数据</td>
+									
+									<td>综合排序</td>
+									
+									<td>搜索某商品，进入商品数据页面</td>
+									
+									<td>1、输入错误的用户名
+2、输入正确的密码
+3、点击登录</td>
+									
+									<td>[
+{
+ "stepname": "跳回到某个tab",
+    "operate": "switchtab",
+    "ele_path": "",
+    "value": 0
+},
+  {
+    "stepname": "输入搜索的商品名称",
+    "operate": "input",
+    "ele_path": "//*[@id='key']",
+    "value": "iphone11 pro max"
+  },
+  {
+    "stepname": "点击搜索按钮",
+    "operate": "click",
+    "ele_path": "//*[@id='search']/div/div[2]/button"
+  },
+  {
+    "stepname": "点击销量排序",
+    "operate": "click",
+    "ele_path": "//*[@id='J_filter']/div[1]/div[1]/a[2]"
+  },
+  {
+    "stepname": "点击评价排序",
+    "operate": "click",
+    "ele_path": "//*[@id='J_filter']/div[1]/div[1]/a[3]"
+  },
+  {
+    "stepname": "点击新品排序",
+    "operate": "click",
+    "ele_path": "//*[@id='J_filter']/div[1]/div[1]/a[4]"
+  }
+]</td>
+									
+									<td>goodsorder</td>
+									
+									<td></td>
+									
+									<td>中</td>
+									
+									<td>Carer</td>
+									
+									<td></td>
+									
+									<td>2023-08-25 22:07:23</td>
+									
+									<td>15.26</td>
+									
+									<td>1</td>
+									
+								</tr>
+								
+								<tr>
+									
+									<td>7</td>
+									
+									<td>商品数据</td>
+									
+									<td>进入京东好物</td>
+									
+									<td>点击进入京东好物</td>
+									
+									<td></td>
+									
+									<td>[{
+    "stepname": "打开登陆链接",
+    "operate": "openlink",
+    "url": "https://www.jd.com/"
+  },{
+    "stepname": "点击京东超市",
+    "operate": "click",
+    "ele_path": "//*[@id='navitems-group1']/li[1]/a"
+  },{
+ "stepname": "跳回到某个tab",
+    "operate": "switchtab",
+    "ele_path": "",
+    "value": 0
+}
+]</td>
+									
+									<td>goods_maintag</td>
+									
+									<td></td>
+									
+									<td>低</td>
+									
+									<td>Carer</td>
+									
+									<td></td>
+									
+									<td>2023-08-25 22:07:38</td>
+									
+									<td>8.94</td>
+									
+									<td>1</td>
+									
+								</tr>
+								
+								<tr>
+									
+									<td>8</td>
+									
+									<td>商品数据</td>
+									
+									<td>进入京东家电</td>
+									
+									<td>点击进入京东家电</td>
+									
+									<td></td>
+									
+									<td>[{
+    "stepname": "打开登陆链接",
+    "operate": "openlink",
+    "url": "https://www.jd.com/"
+  },{
+    "stepname": "点击京东家电",
+    "operate": "click",
+    "ele_path": "//*[@id='navitems-group1']/li[2]/a"
+  },{
+ "stepname": "跳回到某个tab",
+    "operate": "switchtab",
+    "ele_path": "",
+    "value": 0
+}
+]</td>
+									
+									<td>goods_maintag</td>
+									
+									<td></td>
+									
+									<td>低</td>
+									
+									<td>Carer</td>
+									
+									<td></td>
+									
+									<td>2023-08-25 22:07:47</td>
+									
+									<td>2.59</td>
+									
+									<td>1</td>
+									
+								</tr>
+								
+								<tr>
+									
+									<td>9</td>
+									
+									<td>商品数据</td>
+									
+									<td>进入秒杀</td>
+									
+									<td>点击进入秒杀</td>
+									
+									<td></td>
+									
+									<td>[{
+    "stepname": "打开登陆链接",
+    "operate": "openlink",
+    "url": "https://www.jd.com/"
+  },{
+    "stepname": "点击秒杀",
+    "operate": "click",
+    "ele_path": "//*[@id='navitems-group1']/li[3]/a"
+  },{
+ "stepname": "跳回到某个tab",
+    "operate": "switchtab",
+    "ele_path": "",
+    "value": 0
+}
+]</td>
+									
+									<td>goods_maintag</td>
+									
+									<td></td>
+									
+									<td>低</td>
+									
+									<td>Carer</td>
+									
+									<td></td>
+									
+									<td>2023-08-25 22:07:50</td>
+									
+									<td>5.58</td>
+									
+									<td>1</td>
+									
+								</tr>
+								
+								<tr>
+									
+									<td>10</td>
+									
+									<td>商品数据</td>
+									
+									<td>进入京东生鲜</td>
+									
+									<td>点击进入京东生鲜</td>
+									
+									<td></td>
+									
+									<td>[{
+    "stepname": "打开登陆链接",
+    "operate": "openlink",
+    "url": "https://www.jd.com/"
+  },{
+    "stepname": "点击京东生鲜",
+    "operate": "click",
+    "ele_path": "//*[@id='navitems-group1']/li[4]/a"
+  },{
+ "stepname": "跳回到某个tab",
+    "operate": "switchtab",
+    "ele_path": "",
+    "value": 0
+}
+]</td>
+									
+									<td>goods_maintag</td>
+									
+									<td></td>
+									
+									<td>低</td>
+									
+									<td>Carer</td>
+									
+									<td></td>
+									
+									<td>2023-08-25 22:07:56</td>
+									
+									<td>4.22</td>
+									
+									<td>1</td>
+									
+								</tr>
+								
+								<tr>
+									
+									<td>11</td>
+									
+									<td>登陆</td>
+									
+									<td>用户点击退出登录</td>
+									
+									<td>退出当前账户</td>
+									
+									<td>1.点击退出登陆</td>
+									
+									<td>[ {
+    "stepname": "点击退出按钮",
+    "operate": "click",
+    "ele_path": "//*[@id='ttbar-login']/div[2]/div[1]/div[1]/a[1]"
+  }
+]</td>
+									
+									<td>logout</td>
+									
+									<td>//*[@id="content"]/div[2]/div[1]/div</td>
+									
+									<td>高</td>
+									
+									<td>Ace</td>
+									
+									<td></td>
+									
+									<td>2023-08-25 22:08:00</td>
+									
+									<td>3.03</td>
+									
+									<td>1</td>
+									
+								</tr>
+								
+								<tr>
+									
+									<td>1</td>
+									
+									<td>数据管理</td>
+									
+									<td>测试</td>
+									
+									<td>测试</td>
+									
+									<td>测试</td>
+									
+									<td>[]</td>
+									
+									<td>test</td>
+									
+									<td>test</td>
+									
+									<td>高</td>
+									
+									<td>test</td>
+									
+									<td></td>
+									
+									<td>2023-08-25 22:08:03</td>
+									
+									<td>0.00</td>
+									
+									<td>0</td>
+									
+								</tr>
+								
+								<tr>
+									
+									<td>2</td>
+									
+									<td>数据管理</td>
+									
+									<td>测试</td>
+									
+									<td>测试</td>
+									
+									<td>测试</td>
+									
+									<td>[]</td>
+									
+									<td>test</td>
+									
+									<td>test</td>
+									
+									<td>中</td>
+									
+									<td>test</td>
+									
+									<td></td>
+									
+									<td>2023-08-25 22:08:05</td>
+									
+									<td>0.00</td>
+									
+									<td>0</td>
+									
+								</tr>
+								
+								<tr>
+									
+									<td>3</td>
+									
+									<td>数据管理</td>
+									
+									<td>测试</td>
+									
+									<td>测试</td>
+									
+									<td>测试</td>
+									
+									<td>[]</td>
+									
+									<td>test</td>
+									
+									<td>test</td>
+									
+									<td>急</td>
+									
+									<td>test</td>
+									
+									<td></td>
+									
+									<td>2023-08-25 22:08:08</td>
+									
+									<td>0.00</td>
+									
+									<td>0</td>
+									
+								</tr>
+								
+							</tbody>
+						</table>
+						<!-- 将表格数据渲染到隐藏元素中 -->
+						<div id="temtable" style="display: none;">{"alldata": [{"details": "\u8fdb\u5165\u767b\u5f55\u9875\u9762\u3001\u7528\u6237\u6570\u636e", "kdt_step": "[\n  {\n    \"stepname\": \"\u6253\u5f00\u767b\u9646\u94fe\u63a5\",\n    \"operate\": \"openlink\",\n    \"url\": \"https://www.jd.com/\"\n  },\n  {\n    \"stepname\": \"\u70b9\u51fb\u767b\u9646\",\n    \"operate\": \"click\",\n    \"ele_path\": \"//*[@id=\u0027ttbar-login\u0027]/a[1]\"\n  },\n  {\n    \"stepname\": \"\u8f93\u5165\u8d26\u53f7\",\n    \"operate\": \"input\",\n    \"ele_path\": \"//*[@id=\u0027loginname\u0027]\",\n\"value\": \"18502125319\"\n  },\n  {\n    \"stepname\": \"\u8f93\u5165\u5bc6\u7801\",\n    \"operate\": \"input\",\n    \"ele_path\": \"//*[@id=\u0027nloginpwd\u0027]\",\n    \"value\": \"199519951995,\"\n  },\n  {\n    \"stepname\": \"\u70b9\u51fb\u767b\u5f55\u6309\u94ae\",\n    \"operate\": \"click\",\n    \"ele_path\": \"//*[@id=\u0027formlogin\u0027]/div[5]/div\"\n  }\n]", "modname": "\u767b\u9646", "no": "1", "operate_step": "1.\u6210\u529f\u6253\u5f00\u5546\u57ce\n2.\u8f93\u5165\u6b63\u786e\u7528\u6237\u8d26\u53f7\n3.\u8f93\u5165\u9519\u8bef\u7684\u7528\u6237\u5bc6\u7801\n4.\u70b9\u51fb\u767b\u5f55", "priority": "\u9ad8", "remarks": "\u5907\u6ce8\u6587\u5b57\u5907\u6ce8\u6587\u5b57\u5907\u6ce8\u6587\u5b57", "responsibler": "Ace", "run_res": "1", "run_time": "9.39", "starttime": "2023-08-25 22:06:42", "title": "\u7528\u6237\u8f93\u5165\u9519\u8bef\u4fe1\u606f\u540e\u767b\u5f55\u5931\u8d25", "veritydef": "errorlogin", "veritypath": "//*[@id=\"content\"]/div[2]/div[1]/div"}, {"details": "\u8fdb\u5165\u767b\u5f55\u9875\u9762\u3001\u7528\u6237\u6570\u636e", "kdt_step": "[\n  {\n    \"stepname\": \"\u6253\u5f00\u767b\u9646\u94fe\u63a5\",\n    \"operate\": \"openlink\",\n    \"url\": \"https://www.jd.com/\"\n  },\n  {\n    \"stepname\": \"\u70b9\u51fb\u767b\u9646\",\n    \"operate\": \"click\",\n    \"ele_path\": \"//*[@id=\u0027ttbar-login\u0027]/a[1]\"\n  },\n  {\n    \"stepname\": \"\u8f93\u5165\u8d26\u53f7\",\n    \"operate\": \"input\",\n    \"ele_path\": \"//*[@id=\u0027loginname\u0027]\",\n\"value\": \"18888888888\"\n  },\n  {\n    \"stepname\": \"\u8f93\u5165\u5bc6\u7801\",\n    \"operate\": \"input\",\n    \"ele_path\": \"//*[@id=\u0027nloginpwd\u0027]\",\n    \"value\": \"199519951995,\"\n  },\n  {\n    \"stepname\": \"\u70b9\u51fb\u767b\u5f55\u6309\u94ae\",\n    \"operate\": \"click\",\n    \"ele_path\": \"//*[@id=\u0027formlogin\u0027]/div[5]/div\"\n  }\n]", "modname": "\u767b\u9646", "no": "2", "operate_step": "1.\u6210\u529f\u6253\u5f00\u5546\u57ce\n2.\u8f93\u5165\u9519\u8bef\u7684\u7528\u6237\u8d26\u53f7\n3.\u8f93\u5165\u9519\u8bef\u7684\u7528\u6237\u5bc6\u7801\n4.\u70b9\u51fb\u767b\u5f55", "priority": "\u9ad8", "remarks": "\u5907\u6ce8\u6587\u5b57\u5907\u6ce8\u6587\u5b57\u5907\u6ce8\u6587\u5b57", "responsibler": "Ace", "run_res": "1", "run_time": "5.03", "starttime": "2023-08-25 22:06:51", "title": "\u7528\u6237\u8f93\u5165\u9519\u8bef\u4fe1\u606f\u540e\u767b\u5f55\u5931\u8d25", "veritydef": "errorlogin", "veritypath": "//*[@id=\"content\"]/div[2]/div[1]/div"}, {"details": "\u8fdb\u5165\u767b\u5f55\u9875\u9762\u3001\u7528\u6237\u6570\u636e", "kdt_step": "[\n  {\n    \"stepname\": \"\u6253\u5f00\u767b\u9646\u94fe\u63a5\",\n    \"operate\": \"openlink\",\n    \"url\": \"https://www.jd.com/\"\n  },\n  {\n    \"stepname\": \"\u70b9\u51fb\u767b\u9646\",\n    \"operate\": \"click\",\n    \"ele_path\": \"//*[@id=\u0027ttbar-login\u0027]/a[1]\"\n  },\n  {\n    \"stepname\": \"\u8f93\u5165\u8d26\u53f7\",\n    \"operate\": \"input\",\n    \"ele_path\": \"//*[@id=\u0027loginname\u0027]\",\n\"value\": \"18502125319\"\n  },\n  {\n    \"stepname\": \"\u8f93\u5165\u5bc6\u7801\",\n    \"operate\": \"input\",\n    \"ele_path\": \"//*[@id=\u0027nloginpwd\u0027]\",\n    \"value\": \"19950319wanghe,\"\n  },\n  {\n    \"stepname\": \"\u70b9\u51fb\u767b\u5f55\u6309\u94ae\",\n    \"operate\": \"click\",\n    \"ele_path\": \"//*[@id=\u0027formlogin\u0027]/div[5]/div\"\n  }\n]", "modname": "\u767b\u9646", "no": "3", "operate_step": "1.\u6210\u529f\u6253\u5f00\u5546\u57ce\n2.\u8f93\u5165\u7528\u6237\u8d26\u53f7\n3.\u8f93\u5165\u7528\u6237\u5bc6\u7801\n4.\u70b9\u51fb\u767b\u5f55", "priority": "\u9ad8", "remarks": "\u5907\u6ce8\u6587\u5b57\u5907\u6ce8\u6587\u5b57\u5907\u6ce8\u6587\u5b57", "responsibler": "Ace", "run_res": "0", "run_time": "5.20", "starttime": "2023-08-25 22:06:56", "title": "\u7528\u6237\u8f93\u5165\u4fe1\u606f\u540e\u6210\u529f\u767b\u5f55", "veritydef": "login", "veritypath": "//*[@id=\"ttbar-login\"]/div[1]/a"}, {"details": "\u641c\u7d22\u5546\u54c1\uff0c\u52a0\u5165\u8d2d\u7269\u8f66", "kdt_step": "[\n  {\n    \"stepname\": \"\u8f93\u5165\u641c\u7d22\u7684\u5546\u54c1\u540d\u79f0\",\n    \"operate\": \"input\",\n    \"ele_path\": \"//*[@id=\u0027key\u0027]\",\n    \"value\": \"iphone14 pro max\"\n  },\n  {\n    \"stepname\": \"\u70b9\u51fb\u641c\u7d22\u6309\u94ae\",\n    \"operate\": \"click\",\n    \"ele_path\": \"//*[@id=\u0027search\u0027]/div/div[2]/button\"\n  },\n  {\n    \"stepname\": \"\u70b9\u51fb\u628a\u67d0\u4e2a\u5546\u54c1\u52a0\u5165\u8d2d\u7269\u8f66\",\n    \"operate\": \"click\",\n    \"ele_path\": \"//*[@id=\u0027J_goodsList\u0027]/ul/li[2]/div/div[7]/a[3]\"\n  }\n]", "modname": "\u8d2d\u7269\u8f66", "no": "4", "operate_step": "1.\u8f93\u5165\u6307\u5b9a\u5546\u54c1\u540d\u79f0\n2.\u70b9\u51fb\u641c\u7d22\n3.\u628a\u67d0\u4e2a\u5546\u54c1\u52a0\u5165\u5230\u8d2d\u7269\u8f66\n4.\u8fdb\u5165\u8d2d\u7269\u8f66\u67e5\u770b\u5546\u54c1\n5.\u5220\u9664\u8d2d\u7269\u8f66\u4e2d\u7684\u6b64\u5546\u54c1", "priority": "\u9ad8", "remarks": "", "responsibler": "Borce", "run_res": "1", "run_time": "9.05", "starttime": "2023-08-25 22:07:05", "title": "\u6dfb\u52a0\u5546\u54c1\u81f3\u8d2d\u7269\u8f66", "veritydef": "tostar", "veritypath": ""}, {"details": "\u8fdb\u5165\u8d2d\u7269\u8f66\uff0c\u5220\u9664\u5546\u54c1", "kdt_step": "[\n  {\n    \"stepname\": \"\u70b9\u51fb\u8fdb\u5165\u8d2d\u7269\u8f66\",\n    \"operate\": \"click\",\n    \"ele_path\": \"//*[@id=\u0027GotoShoppingCart\u0027]\"\n  },\n{\n \"stepname\": \"\u8df3\u5230\u67d0\u4e2atab\",\n    \"operate\": \"switchtab\",\n    \"ele_path\": \"\",\n    \"value\": -1\n},\n  {\n    \"stepname\": \"\u70b9\u51fb\u5220\u9664\u9009\u4e2d\",\n    \"operate\": \"click\",\n    \"ele_path\": \"//*[@id=\u0027cart-body\u0027]/div[2]/div[5]/div/div[2]/div/div/div/div[2]/div[1]/div[2]/a[1]\"\n  },\n{\n    \"stepname\": \"\u70b9\u51fb\u5220\u9664\u8be5\u5546\u54c1\",\n    \"operate\": \"click\",\n    \"ele_path\": \"/html/body/div[9]/div[1]/div/div/div/p/a[2]\"\n  }\n]", "modname": "\u8d2d\u7269\u8f66", "no": "5", "operate_step": "1.\u8fdb\u5165\u8d2d\u7269\u8f66\n2.\u9009\u62e9\u5546\u54c1\n3.\u70b9\u51fb\u5220\u9664", "priority": "\u9ad8", "remarks": "", "responsibler": "Borce", "run_res": "1", "run_time": "9.10", "starttime": "2023-08-25 22:07:14", "title": "\u8d2d\u7269\u8f66\u5220\u9664\u5546\u54c1", "veritydef": "delstar", "veritypath": ""}, {"details": "\u641c\u7d22\u67d0\u5546\u54c1\uff0c\u8fdb\u5165\u5546\u54c1\u6570\u636e\u9875\u9762", "kdt_step": "[\n{\n \"stepname\": \"\u8df3\u56de\u5230\u67d0\u4e2atab\",\n    \"operate\": \"switchtab\",\n    \"ele_path\": \"\",\n    \"value\": 0\n},\n  {\n    \"stepname\": \"\u8f93\u5165\u641c\u7d22\u7684\u5546\u54c1\u540d\u79f0\",\n    \"operate\": \"input\",\n    \"ele_path\": \"//*[@id=\u0027key\u0027]\",\n    \"value\": \"iphone11 pro max\"\n  },\n  {\n    \"stepname\": \"\u70b9\u51fb\u641c\u7d22\u6309\u94ae\",\n    \"operate\": \"click\",\n    \"ele_path\": \"//*[@id=\u0027search\u0027]/div/div[2]/button\"\n  },\n  {\n    \"stepname\": \"\u70b9\u51fb\u9500\u91cf\u6392\u5e8f\",\n    \"operate\": \"click\",\n    \"ele_path\": \"//*[@id=\u0027J_filter\u0027]/div[1]/div[1]/a[2]\"\n  },\n  {\n    \"stepname\": \"\u70b9\u51fb\u8bc4\u4ef7\u6392\u5e8f\",\n    \"operate\": \"click\",\n    \"ele_path\": \"//*[@id=\u0027J_filter\u0027]/div[1]/div[1]/a[3]\"\n  },\n  {\n    \"stepname\": \"\u70b9\u51fb\u65b0\u54c1\u6392\u5e8f\",\n    \"operate\": \"click\",\n    \"ele_path\": \"//*[@id=\u0027J_filter\u0027]/div[1]/div[1]/a[4]\"\n  }\n]", "modname": "\u5546\u54c1\u6570\u636e", "no": "6", "operate_step": "1\u3001\u8f93\u5165\u9519\u8bef\u7684\u7528\u6237\u540d\n2\u3001\u8f93\u5165\u6b63\u786e\u7684\u5bc6\u7801\n3\u3001\u70b9\u51fb\u767b\u5f55", "priority": "\u4e2d", "remarks": "", "responsibler": "Carer", "run_res": "1", "run_time": "15.26", "starttime": "2023-08-25 22:07:23", "title": "\u7efc\u5408\u6392\u5e8f", "veritydef": "goodsorder", "veritypath": ""}, {"details": "\u70b9\u51fb\u8fdb\u5165\u4eac\u4e1c\u597d\u7269", "kdt_step": "[{\n    \"stepname\": \"\u6253\u5f00\u767b\u9646\u94fe\u63a5\",\n    \"operate\": \"openlink\",\n    \"url\": \"https://www.jd.com/\"\n  },{\n    \"stepname\": \"\u70b9\u51fb\u4eac\u4e1c\u8d85\u5e02\",\n    \"operate\": \"click\",\n    \"ele_path\": \"//*[@id=\u0027navitems-group1\u0027]/li[1]/a\"\n  },{\n \"stepname\": \"\u8df3\u56de\u5230\u67d0\u4e2atab\",\n    \"operate\": \"switchtab\",\n    \"ele_path\": \"\",\n    \"value\": 0\n}\n]", "modname": "\u5546\u54c1\u6570\u636e", "no": "7", "operate_step": "", "priority": "\u4f4e", "remarks": "", "responsibler": "Carer", "run_res": "1", "run_time": "8.94", "starttime": "2023-08-25 22:07:38", "title": "\u8fdb\u5165\u4eac\u4e1c\u597d\u7269", "veritydef": "goods_maintag", "veritypath": ""}, {"details": "\u70b9\u51fb\u8fdb\u5165\u4eac\u4e1c\u5bb6\u7535", "kdt_step": "[{\n    \"stepname\": \"\u6253\u5f00\u767b\u9646\u94fe\u63a5\",\n    \"operate\": \"openlink\",\n    \"url\": \"https://www.jd.com/\"\n  },{\n    \"stepname\": \"\u70b9\u51fb\u4eac\u4e1c\u5bb6\u7535\",\n    \"operate\": \"click\",\n    \"ele_path\": \"//*[@id=\u0027navitems-group1\u0027]/li[2]/a\"\n  },{\n \"stepname\": \"\u8df3\u56de\u5230\u67d0\u4e2atab\",\n    \"operate\": \"switchtab\",\n    \"ele_path\": \"\",\n    \"value\": 0\n}\n]", "modname": "\u5546\u54c1\u6570\u636e", "no": "8", "operate_step": "", "priority": "\u4f4e", "remarks": "", "responsibler": "Carer", "run_res": "1", "run_time": "2.59", "starttime": "2023-08-25 22:07:47", "title": "\u8fdb\u5165\u4eac\u4e1c\u5bb6\u7535", "veritydef": "goods_maintag", "veritypath": ""}, {"details": "\u70b9\u51fb\u8fdb\u5165\u79d2\u6740", "kdt_step": "[{\n    \"stepname\": \"\u6253\u5f00\u767b\u9646\u94fe\u63a5\",\n    \"operate\": \"openlink\",\n    \"url\": \"https://www.jd.com/\"\n  },{\n    \"stepname\": \"\u70b9\u51fb\u79d2\u6740\",\n    \"operate\": \"click\",\n    \"ele_path\": \"//*[@id=\u0027navitems-group1\u0027]/li[3]/a\"\n  },{\n \"stepname\": \"\u8df3\u56de\u5230\u67d0\u4e2atab\",\n    \"operate\": \"switchtab\",\n    \"ele_path\": \"\",\n    \"value\": 0\n}\n]", "modname": "\u5546\u54c1\u6570\u636e", "no": "9", "operate_step": "", "priority": "\u4f4e", "remarks": "", "responsibler": "Carer", "run_res": "1", "run_time": "5.58", "starttime": "2023-08-25 22:07:50", "title": "\u8fdb\u5165\u79d2\u6740", "veritydef": "goods_maintag", "veritypath": ""}, {"details": "\u70b9\u51fb\u8fdb\u5165\u4eac\u4e1c\u751f\u9c9c", "kdt_step": "[{\n    \"stepname\": \"\u6253\u5f00\u767b\u9646\u94fe\u63a5\",\n    \"operate\": \"openlink\",\n    \"url\": \"https://www.jd.com/\"\n  },{\n    \"stepname\": \"\u70b9\u51fb\u4eac\u4e1c\u751f\u9c9c\",\n    \"operate\": \"click\",\n    \"ele_path\": \"//*[@id=\u0027navitems-group1\u0027]/li[4]/a\"\n  },{\n \"stepname\": \"\u8df3\u56de\u5230\u67d0\u4e2atab\",\n    \"operate\": \"switchtab\",\n    \"ele_path\": \"\",\n    \"value\": 0\n}\n]", "modname": "\u5546\u54c1\u6570\u636e", "no": "10", "operate_step": "", "priority": "\u4f4e", "remarks": "", "responsibler": "Carer", "run_res": "1", "run_time": "4.22", "starttime": "2023-08-25 22:07:56", "title": "\u8fdb\u5165\u4eac\u4e1c\u751f\u9c9c", "veritydef": "goods_maintag", "veritypath": ""}, {"details": "\u9000\u51fa\u5f53\u524d\u8d26\u6237", "kdt_step": "[ {\n    \"stepname\": \"\u70b9\u51fb\u9000\u51fa\u6309\u94ae\",\n    \"operate\": \"click\",\n    \"ele_path\": \"//*[@id=\u0027ttbar-login\u0027]/div[2]/div[1]/div[1]/a[1]\"\n  }\n]", "modname": "\u767b\u9646", "no": "11", "operate_step": "1.\u70b9\u51fb\u9000\u51fa\u767b\u9646", "priority": "\u9ad8", "remarks": "", "responsibler": "Ace", "run_res": "1", "run_time": "3.03", "starttime": "2023-08-25 22:08:00", "title": "\u7528\u6237\u70b9\u51fb\u9000\u51fa\u767b\u5f55", "veritydef": "logout", "veritypath": "//*[@id=\"content\"]/div[2]/div[1]/div"}, {"details": "\u6d4b\u8bd5", "kdt_step": "[]", "modname": "\u6570\u636e\u7ba1\u7406", "no": "1", "operate_step": "\u6d4b\u8bd5", "priority": "\u9ad8", "remarks": "", "responsibler": "test", "run_res": "0", "run_time": "0.00", "starttime": "2023-08-25 22:08:03", "title": "\u6d4b\u8bd5", "veritydef": "test", "veritypath": "test"}, {"details": "\u6d4b\u8bd5", "kdt_step": "[]", "modname": "\u6570\u636e\u7ba1\u7406", "no": "2", "operate_step": "\u6d4b\u8bd5", "priority": "\u4e2d", "remarks": "", "responsibler": "test", "run_res": "0", "run_time": "0.00", "starttime": "2023-08-25 22:08:05", "title": "\u6d4b\u8bd5", "veritydef": "test", "veritypath": "test"}, {"details": "\u6d4b\u8bd5", "kdt_step": "[]", "modname": "\u6570\u636e\u7ba1\u7406", "no": "3", "operate_step": "\u6d4b\u8bd5", "priority": "\u6025", "remarks": "", "responsibler": "test", "run_res": "0", "run_time": "0.00", "starttime": "2023-08-25 22:08:08", "title": "\u6d4b\u8bd5", "veritydef": "test", "veritypath": "test"}], "allfiled": ["no", "modname", "title", "details", "operate_step", "kdt_step", "veritydef", "veritypath", "priority", "responsibler", "remarks", "starttime", "run_time", "run_res"], "allnum": 14, "alltime": 77.39, "fail_num": 4, "modtype": ["\u767b\u9646", "\u8d2d\u7269\u8f66", "\u5546\u54c1\u6570\u636e", "\u6570\u636e\u7ba1\u7406"], "success_num": 10}</div>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+	</div>
+
+
+	<script type="text/javascript">
+
+		// js方法
+		$(function () {
+
+
+			// 从隐藏元素中读取表格数据
+			var tableData = JSON.parse(document.getElementById('temtable').textContent);
+
+			// load后 默认情况，默认展示overview
+			$("#overview").show()
+			$("#databench").hide()
+
+
+			// 点击overview
+			var btn1 = $(".menu_list ul li:first")
+			btn1.on('click', ["overview", 1, 2, 3], function (event) {
+
+				btn1.addClass("clickli")
+				btn2.removeClass("clickli")
+
+				$("#overview").show()
+				$("#databench").hide()
+
+			})
+
+			// 点击databench
+			var btn2 = $(".menu_list ul li:last")
+			btn2.on('click', ["databench", 1, 2, 3], function (event) {
+
+				btn2.addClass("clickli")
+				btn1.removeClass("clickli")
+
+				$("#overview").hide()
+				$("#databench").show()
+			})
+
+
+
+			// overview_1_1 里的bar
+			var overview_1_1_bar = echarts.init(document.getElementById("overview_1_1_bar"));
+			//统计类别和个数
+			const countkind = []
+			for (const item in tableData["modtype"]) {
+				let count = 0
+				for (const jtem in tableData["alldata"]) {
+					if (tableData["alldata"][jtem]["modname"] == tableData["modtype"][item]) {
+						count++
+					}
+				}
+				countkind.push(count)
+			}
+
+			var overview_1_1_bar_option = {
+				color: "#4c81ff",
+				tooltip:{},
+				xAxis: {
+					type: 'category',
+					data: tableData["modtype"],
+					axisLabel: {
+						fontSize: 10,
+						rotate: 30
+					}
+				},
+				yAxis: {
+					type: 'value'
+				},
+				series: [
+					{
+						data: countkind,
+						type: 'bar',
+						showBackground: true,
+						backgroundStyle: {
+							color: 'rgba(180, 180, 180, 0.2)'
+						}
+					}
+				]
+			};
+			overview_1_1_bar.setOption(overview_1_1_bar_option);
+
+
+			// overview_1_1 里的pie
+			var overview_1_1_pie = echarts.init(document.getElementById("overview_1_1_pie"));
+			var overview_1_1_pie_option = {
+				color: ["rgb(114,172,77)", "#e24742"],
+				tooltip: {
+					trigger: 'item'
+				},
+				legend: {
+					orient: 'vertical',
+					top: 'left',
+					orient: "horizontal"
+				},
+				series: [
+					{
+						name: '数量',
+						type: 'pie',
+						radius: '50%',
+						data: [
+							{ value: tableData["success_num"], name: 'successNum' },
+							{ value: tableData["fail_num"], name: 'failNum' }
+						],
+						emphasis: {
+							itemStyle: {
+								shadowBlur: 10,
+								shadowOffsetX: 0,
+								shadowColor: 'rgba(0, 0, 0, 0.5)'
+							}
+						}
+					}
+				]
+			};
+			overview_1_1_pie.setOption(overview_1_1_pie_option);
+
+
+			//overview_1_2里的  gotoall
+			$(".gotoall").on("click", function () {
+
+				btn2.addClass("clickli")
+				btn1.removeClass("clickli")
+				$("#overview").hide()
+				$("#databench").show()
+			})
+
+
+			// 处理tableData 数据
+			//统计类别和个数
+			const prioobj = { '低': 0, '中': 0, '高': 0, '急': 0 }
+			for (const item in tableData["alldata"]) {
+				prioobj[tableData["alldata"][item]["priority"]] += 1
+			}
+			console.log(prioobj)
+
+			// overview_2 里的 bar
+			var overview_2 = echarts.init(document.getElementById("overview_2_div"));
+			var overview_2_option = {
+				color: "#4c81ff",
+				title: {
+					text: 'priority'
+				},
+				tooltip: {
+					trigger: 'axis'
+				},
+				xAxis: {
+					type: 'category',
+					//boundaryGap: false,
+					data: ['低', '中', '高', '急']
+				},
+				yAxis: {
+					type: 'value',
+					axisLabel: {
+						formatter: '{value} 个'
+					}
+				},
+				series: [
+					{
+						name: 'priority',
+						type: 'bar',
+						data: [prioobj["低"], prioobj["中"], prioobj["高"], prioobj["急"]],
+					}
+				]
+			};
+			overview_2.setOption(overview_2_option);
+
+
+			// 点击databench筛选条件
+			var databench_mod = $("#databench_filter_modname")
+			databench_mod.bind('click', ["All", "A", "B", "C"], function (event) {
+
+				$("#databench_filter_modnameselect").css({
+					top: $(this).position().top + 40 + "px",
+					left: $(this).position().left + "px"
+				})
+				$("#databench_filter_modnameselect").show()
+			})
+
+
+			var databench_res = $("#databench_filter_res")
+			databench_res.on('click', ["All", "A", "B", "C"], function (event) {
+				$("#databench_filter_resselect").css({
+					top: $(this).position().top + 40 + "px",
+					left: $(this).position().left + "px"
+				})
+				$("#databench_filter_resselect").show()
+			})
+
+			// 当页面其他地方被点击时
+			$(document).click(function (event) {
+				// 如果点击事件不是来自于Bdiv或Adiv
+				if (!$(event.target).closest("#databench_filter_modname, #databench_filter_res").length) {
+					// 隐藏Bdiv
+					$("#databench_filter_modnameselect").hide()
+					$("#databench_filter_resselect").hide()
+				}
+			});
+
+			//点击筛选方法
+			//筛选的初始值
+			$("#databench_filter_modname_text").text("All")
+			$("#databench_filter_res_text").text("All")
+			$("#databench_filter_modnameselect ul li").on("click", [], function (e) {
+				text = e.target.innerHTML
+				$("#databench_filter_modname_text").text(text)
+			})
+
+			$("#databench_filter_resselect ul li").on("click", [], function (e) {
+				text = e.target.innerHTML
+				$("#databench_filter_res_text").text(text)
+			})
+
+
+
+			// 点击下拉后触发过滤表格数据
+			$("#databench_filter_modnameselect ul li").on("click", function () {
+				const filtermodname = $("#databench_filter_modname_text").text()
+				const filterres = $("#databench_filter_res_text").text()
+
+				filtertable(tableData["alldata"], filtermodname, filterres)
+			})
+
+			$("#databench_filter_resselect ul li").on("click", function () {
+				const filtermodname = $("#databench_filter_modname_text").text()
+				const filterres = $("#databench_filter_res_text").text()
+
+				filtertable(tableData["alldata"], filtermodname, filterres)
+			})
+
+
+			//表格过滤方法
+			function filtertable(alldata, modname, res) {
+
+				var filteredData = alldata.filter(function (row) {
+					// 1 0 成功 失败 转换
+					temres = res == "成功" ? "1" : "0"
+					return (modname === "All" || modname === row["modname"]) && (res === "All" || row["run_res"] === temres);
+				});
+
+				//获取 数据里key的值 []
+				var getkey = ['no', 'modname', 'title', 'details', 'operate_step', 'kdt_step', 'veritydef', 'veritypath', 'priority', 'responsibler', 'remarks', 'starttime', 'run_time', 'run_res']
+
+				// 清空原来table里面
+				var tableBodytr = $("#dynamic_table tbody tr");
+				tableBodytr.remove()
+				// 生成数据行
+				var tableBody = $("#dynamic_table tbody");
+				$.each(filteredData, function (index, data) {
+					var row = $("<tr></tr>");
+					$.each(getkey, function (index, header) {
+						row.append("<td>" + data[header] + "</td>");
+					});
+					tableBody.append(row);
+				});
+
+			}
+
+
+			// 截图方法
+			$('#topnav_img').on("click", function () {
+
+				// 使用 html2canvas 进行截图
+				html2canvas($("#overview")).then(function (canvas) {
+					// 将 Canvas 转换为图像 URL
+					var imgData = canvas.toDataURL("image/png");
+
+					// 创建一个虚拟链接并下载图像
+					var link = document.createElement('a');
+					link.href = imgData;
+					link.download = "overviewscreenshot.png";
+					link.click();
+				});
+			});
+
+
+
+			//---------end----------
+		})
+
+
+
+	</script>
+</body>
+
+
+</html>

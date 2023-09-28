@@ -1,0 +1,38 @@
+[0828/141342.156667:INFO:CONSOLE(1)] "The AudioContext was not allowed to start. It must be resumed (or created) after a user gesture on the page. https://goo.gl/7K7WLu", source:  (1)
+[0828/141342.840528:INFO:CONSOLE(1924)] "[.WebGL-0x10401432a00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels", source: https://www.jd.com/ (1924)
+[0828/141342.888278:INFO:CONSOLE(1)] "%c本页面由 京东-主站前端团队 开发维护 
+
+                      -- JDC  color: #6190e8;", source: https://storage.360buyimg.com/channel2022/jd_home/0.0.31/static/js/index.chunk.js (1)
+[0828/141345.062333:INFO:CONSOLE(0)] "[.WebGL-0x104035dff00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels", source: https://www.jd.com/ (0)
+[0828/141345.062538:INFO:CONSOLE(0)] "[.WebGL-0x104009ee200]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels", source: https://www.jd.com/ (0)
+[0828/141350.002954:INFO:CONSOLE(1)] "%c本页面由 京东-主站前端团队 开发维护 
+
+                      -- JDC  color: #6190e8;", source: https://storage.360buyimg.com/channel2022/jd_home/0.0.31/static/js/index.chunk.js (1)
+[0828/141354.460673:INFO:CONSOLE(1)] "%c本页面由 京东-主站前端团队 开发维护 
+
+                      -- JDC  color: #6190e8;", source: https://storage.360buyimg.com/channel2022/jd_home/0.0.31/static/js/index.chunk.js (1)
+[0828/141436.011296:INFO:CONSOLE(1)] "%c本页面由 京东-主站前端团队 开发维护 
+
+                      -- JDC  color: #6190e8;", source: https://storage.360buyimg.com/channel2022/jd_home/0.0.31/static/js/index.chunk.js (1)
+[0828/141438.299015:INFO:CONSOLE(1)] "%c本页面由 京东-主站前端团队 开发维护 
+
+                      -- JDC  color: #6190e8;", source: https://storage.360buyimg.com/channel2022/jd_home/0.0.31/static/js/index.chunk.js (1)
+[0828/141439.874092:INFO:CONSOLE(1)] "viewkit-pc-version 0.0.8-4", source: https://storage.360buyimg.com/babelpc/static/js/mall.f31e5736.js (1)
+[0828/141439.924655:INFO:CONSOLE(1)] "%c本页面由 京东-主站前端团队 开发维护 
+
+                      -- JDC  color: #6190e8;", source: https://storage.360buyimg.com/channel2022/jd_home/0.0.31/static/js/index.chunk.js (1)
+[0828/141441.470032:INFO:CONSOLE(1)] "viewkit-pc-version 0.0.8-4", source: https://storage.360buyimg.com/babelpc/static/js/mall.f31e5736.js (1)
+[0828/141441.860746:INFO:CONSOLE(1)] "%c本页面由 京东-主站前端团队 开发维护 
+
+                      -- JDC  color: #6190e8;", source: https://storage.360buyimg.com/channel2022/jd_home/0.0.31/static/js/index.chunk.js (1)
+[0828/141446.487824:INFO:CONSOLE(1)] "<JS Agent>: [object Object]", source: https://storage.360buyimg.com/babelpc/static/js/vendors.8f12b085.chunk.js (1)
+[0828/141446.497698:INFO:CONSOLE(1)] "<JS Agent>: 发送服务请求： //h5speed.m.jd.com/v3/exception?data=eyJmbGFnIjoxOCwicnRzIjoxNjkzMjAzMjg2NDg1LCJsaWJWZXIiOiIyLjcuMCIsInVybCI6Imh0dHBzOi8vcHJvLmpkLmNvbS9tYWxsL2FjdGl2ZS8zNnlQYldtNEpxRnJtVGdBQnlkejZHa1dOa2NhL2luZGV4Lmh0bWwiLCJ0aXRsZSI6IuS6rOS4nOi2heW4giIsInVzZXJUcmFjZURvbSI6W10sInVzZXJUcmFjZUV2ZW50IjpbXSwidXNlclRyYWNlVHMiOltdLCJuZXR3b3JrIjoiNGciLCJlcnJUeXBlIjozLCJlcnJDb2RlIjowLCJlcnJNc2ciOiLlronlhajlj43niKxTRGvosIPnlKjogJfml7YiLCJyZVR5cGUiOjIsImV4dHJhRGF0YSI6eyJrZXkiOiJzZWN1cml0eV9kdXJhdGlvbiIsInRpbWUiOjE2MzF9LCJlcnJMZXZlbCI6NH0%3D", source: https://storage.360buyimg.com/babelpc/static/js/vendors.8f12b085.chunk.js (1)
+[0828/141446.631554:INFO:CONSOLE(1)] "用户未登录", source: https://storage.360buyimg.com/babelpc/static/js/mall.f31e5736.js (1)
+[0828/141447.767867:INFO:CONSOLE(1)] "%c本页面由 凹凸实验室（JDC-体验技术部） 负责开发，你可以通过 https://aotu.io 了解我们。
+
+如果你对我们在做的事情也有兴趣，欢迎加入 aotu@jd.com（注明来自console）
+
+ color: #6190e8;", source: https://static.360buyimg.com/mtd/pc/base/1.0.0/base.js (1)
+[0828/141447.857090:INFO:CONSOLE(1)] "<JS Agent>: [object Object]", source: https://storage.360buyimg.com/babelpc/static/js/vendors.8f12b085.chunk.js (1)
+[0828/141447.861187:INFO:CONSOLE(1)] "<JS Agent>: 发送服务请求： //h5speed.m.jd.com/v3/exception?data=eyJmbGFnIjoxOCwicnRzIjoxNjkzMjAzMjg3ODUxLCJsaWJWZXIiOiIyLjcuMCIsInVybCI6Imh0dHBzOi8vcHJvLmpkLmNvbS9tYWxsL2FjdGl2ZS8ydngyenlYUjJLaFJvdVlTNkxyU0VkbkxGMVA1L2luZGV4Lmh0bWwiLCJ0aXRsZSI6IuS6rOS4nOWutueUtSIsInVzZXJUcmFjZURvbSI6W10sInVzZXJUcmFjZUV2ZW50IjpbXSwidXNlclRyYWNlVHMiOltdLCJuZXR3b3JrIjoiNGciLCJlcnJUeXBlIjozLCJlcnJDb2RlIjowLCJlcnJNc2ciOiLlronlhajlj43niKxTRGvosIPnlKjogJfml7YiLCJyZVR5cGUiOjIsImV4dHJhRGF0YSI6eyJrZXkiOiJzZWN1cml0eV9kdXJhdGlvbiIsInRpbWUiOjQxMX0sImVyckxldmVsIjo0fQ%3D%3D", source: https://storage.360buyimg.com/babelpc/static/js/vendors.8f12b085.chunk.js (1)
+[0828/141448.104245:INFO:CONSOLE(1)] "用户未登录", source: https://storage.360buyimg.com/babelpc/static/js/mall.f31e5736.js (1)

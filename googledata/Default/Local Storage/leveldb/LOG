@@ -1,0 +1,7 @@
+2023/08/28-14:13:30.605 6b03 Creating DB /Users/apple/Desktop/Dev_project/test_frame/./googledata/Default/Local Storage/leveldb since it was missing.
+2023/08/28-14:13:30.668 6b03 Reusing MANIFEST /Users/apple/Desktop/Dev_project/test_frame/./googledata/Default/Local Storage/leveldb/MANIFEST-000001
+2023/08/28-14:14:51.169 8d03 Level-0 table #5: started
+2023/08/28-14:14:51.184 8d03 Level-0 table #5: 79342 bytes OK
+2023/08/28-14:14:51.233 8d03 Delete type=0 #3
+2023/08/28-14:15:00.870 7c03 Level-0 table #7: started
+2023/08/28-14:15:00.912 7c03 Level-0 table #7: 91091 bytes OK
